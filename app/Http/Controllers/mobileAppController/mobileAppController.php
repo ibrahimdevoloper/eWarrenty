@@ -87,8 +87,8 @@ class mobileAppController extends Controller
         ]); 
         if ($validator->fails()) {
             return response()->json([
-                'messageEn'=>'language not found',
-                'messageAr'=>'اللغة غير موجودة'
+                'messageEn'=>'code not found',
+                'messageAr'=>'كود غير موجودة'
             ],400);
         }
         $code = $request->input('code');
