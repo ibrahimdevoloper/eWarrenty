@@ -32,7 +32,7 @@ class MarketFactory extends Factory
         'name_en'=>$this->faker->text(25),
         'email'=>$this->faker->email(),
         'address'=>$this->faker->address(),
-        'country_id'=>Country::all()->random()->id,
+        'country'=>$this->faker->country(),
         'phone_number'=>$this->faker->phoneNumber(),
         'username'=>$this->faker->userName(),
         'password'=>$password?:$password=bcrypt("123456")

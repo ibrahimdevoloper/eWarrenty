@@ -22,9 +22,9 @@ class Battery extends Migration
             $table->string('info',190)->Nullable();
             $table->string('dimensions',100);
             $table->string('description',190)->Nullable();
-            $table->string('image',190);
-            $table->string('front_image',190);
-            $table->string('serial_number_image',190);
+            $table->string('image');
+            $table->string('front_image');
+            $table->string('serial_number_image');
             $table->foreignId('terminal_id')->constrained("terminals");
             $table->foreignId('manufacturing_country_id')->constrained("manufacturing_countries");
             $table->timestamps();

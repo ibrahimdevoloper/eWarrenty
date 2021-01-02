@@ -26,6 +26,7 @@ class Warranty extends Model
         'car_type_id',
         "warranty_code",
         "customer_phone_number",
+        "customer_country",
         "customer_address",
         "customer_email",
         "customer_name",

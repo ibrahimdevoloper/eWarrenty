@@ -26,9 +26,9 @@ class Battery extends Model
         'dimensions',
         'description',
         'manufacturing_country_id',
-        'image',
-        'front_image',
-        'serial_number_image',
+        'image',//battery preview image
+        'front_image',//example on how to take a picture of the battery
+        'serial_number_image',// where to find serial number
     ];
 
     public function  manufacturingCountry(){
