@@ -32,7 +32,7 @@ class DatabaseSeeder extends Seeder
 
         CarProperty::truncate();
         CarType::truncate();
-        Country::truncate();
+        // Country::truncate();
         ManufacturingCountry::truncate();
         Terminal::truncate();
         Battery::truncate();
@@ -62,7 +62,7 @@ class DatabaseSeeder extends Seeder
         //for laravel 8.*
         CarProperty::factory()->count($carPropertyQuantty)->create();
         CarType::factory()->count($carTypeQuantty)->create();
-        Country::factory()->count($countryQuantty)->create();
+        // Country::factory()->count($countryQuantty)->create();
         ManufacturingCountry::factory()->count($manufacturingCountryQuantty)->create();
         Terminal::factory()->count($terminalQuantty)->create();
         Battery::factory()->count($batteryQuantty)->create();

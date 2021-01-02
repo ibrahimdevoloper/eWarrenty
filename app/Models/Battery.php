@@ -14,7 +14,7 @@ class Battery extends Model
 {
     use HasFactory;
 
-    protected $table="battaries";
+    protected $table="batteries";
 
     protected $fillable =[
         'number',

@@ -17,6 +17,10 @@ class Market extends Model
         'address',
         'phone_number',
         'username',
+        
+    ];
+
+    protected $hidden=[
         'password'
     ];
 

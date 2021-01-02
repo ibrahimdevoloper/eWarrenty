@@ -29,6 +29,7 @@ class Warranty extends Migration
             $table->string('car_number',15);
             $table->string('customer_phone_number',50)->Nullable();
             $table->string('customer_address',200);
+            $table->string('customer_country',200);
             $table->string('customer_email',50)->Nullable();
             $table->string('customer_name',35);
             $table->string('car_number_image',50);
