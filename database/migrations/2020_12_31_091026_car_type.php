@@ -17,7 +17,7 @@ class CarType extends Migration
             $table->id();
             $table->string('name_ar',20);
             $table->string('name_en',20);
-            $table->string('image')->nullable();
+            $table->string('image',100)->nullable();
             $table->timestamps();
         });
     }

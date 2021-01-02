@@ -29,12 +29,11 @@ class Warranty extends Migration
             $table->string('car_number',15);
             $table->string('customer_phone_number',50)->Nullable();
             $table->string('customer_address',200);
-            $table->string('customer_country',50);
             $table->string('customer_email',50)->Nullable();
-            $table->string('customer_name',50);
-            $table->string('car_number_image');
-            $table->string('battery_front_image');
-            $table->string('fixed_battery_image');
+            $table->string('customer_name',35);
+            $table->string('car_number_image',50);
+            $table->string('battery_front_image',50);
+            $table->string('fixed_battery_image',50);
             $table->string('notes',190)->nullable();
             $table->foreignId('battery_model_id')->constrained("batteries");
             $table->foreignId('car_property_id')->constrained("car_properties");

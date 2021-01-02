@@ -29,24 +29,15 @@ class WarrantyFactory extends Factory
             'battery_serial_number'=>substr(str_shuffle('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'),1,10),
             'bought_date'=>$this->faker->dateTimeBetween($startDate = '-2 years', $endDate = 'now'),
             'car_number'=>substr(str_shuffle('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'),1,6),
-            'car_number_image'=>$this->faker->randomElement([
-                'images\carFront\1.png',
-                'images\carFront\2.png',
-                'images\carFront\3.png'
-            ]),
-            'battery_front_image'=>$this->faker->randomElement([
-                'images\batteries\1.png',
-                'images\batteries\2.png',
-                'images\batteries\3.png'
-            ]),
-            'fixed_battery_image'=>'images\fixedCarBattery\1.jpg',
+            'car_number_image'=>$this->faker->randomElement(["1.jpg","2.jpg","3.jpg","4.jpg"]),
+            'battery_front_image'=>$this->faker->randomElement(["1.jpg","2.jpg","3.jpg","4.jpg"]),
+            'fixed_battery_image'=>$this->faker->randomElement(["1.jpg","2.jpg","3.jpg","4.jpg"]),
             'battery_model_id'=>Battery::all()->random()->id,
             'car_property_id'=>CarProperty::all()->random()->id,
             'car_type_id'=>CarType::all()->random()->id,
             "warranty_code"=>substr(str_shuffle('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'),1,7),
             "customer_phone_number"=>$this->faker->phoneNumber(),
             "customer_address"=>$this->faker->address(),
-            "customer_country"=>$this->faker->country(),
             "customer_email"=>$this->faker->email(),
             "customer_name"=>$this->faker->name(),
             "notes"=>$this->faker->text(190),

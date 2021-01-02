@@ -21,7 +21,7 @@ class Battery extends Migration
             $table->string('number',20);
             $table->string('info',190)->Nullable();
             $table->string('dimensions',100);
-            $table->string('description',190);
+            $table->string('description',190)->Nullable();
             $table->string('image',190);
             $table->string('front_image',190);
             $table->string('serial_number_image',190);
