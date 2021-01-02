@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Warranty;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Warranty;
 
 class WarrantyController extends Controller
 {
@@ -12,7 +13,7 @@ class WarrantyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($warrentyCode)
     {
         //
     }
@@ -78,8 +79,8 @@ class WarrantyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
-    }
+    // public function destroy($id)
+    // {
+    //     //
+    // }
 }

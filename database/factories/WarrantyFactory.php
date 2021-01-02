@@ -30,14 +30,14 @@ class WarrantyFactory extends Factory
             'bought_date'=>$this->faker->dateTimeBetween($startDate = '-2 years', $endDate = 'now'),
             'car_number'=>substr(str_shuffle('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'),1,6),
             'car_number_image'=>$this->faker->randomElement([
-                'images\carFront\1.png',
-                'images\carFront\2.png',
-                'images\carFront\3.png'
+                'images/carFront/1.png',
+                'images/carFront/2.png',
+                'images/carFront/3.png'
             ]),
             'battery_front_image'=>$this->faker->randomElement([
-                'images\batteries\1.png',
-                'images\batteries\2.png',
-                'images\batteries\3.png'
+                'images/batteries/1.png',
+                'images/batteries/2.png',
+                'images/batteries/3.png'
             ]),
             'fixed_battery_image'=>'images\fixedCarBattery\1.jpg',
             'battery_model_id'=>Battery::all()->random()->id,

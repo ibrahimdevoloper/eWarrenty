@@ -34,19 +34,19 @@ class BatteryFactory extends Factory
         'description'=>$this->faker->paragraph(1),
         'manufacturing_country_id'=>ManufacturingCountry::all()->random()->id,
         'image'=>$this->faker->randomElement([
-            'images\batteries\1.png',
-            'images\batteries\2.png',
-            'images\batteries\3.png'
+            'images/batteries/1.png',
+            'images/batteries/2.png',
+            'images/batteries/3.png'
         ]),
         'serial_number_image'=>$this->faker->randomElement([
-            'images\batteries\1.png',
-            'images\batteries\2.png',
-            'images\batteries\3.png'
+            'images/batteries/1.png',
+            'images/batteries/2.png',
+            'images/batteries/3.png'
         ]),
         'front_image'=>$this->faker->randomElement([
-            'images\batteries\1.png',
-            'images\batteries\2.png',
-            'images\batteries\3.png'
+            'images/batteries/1.png',
+            'images/batteries/2.png',
+            'images/batteries/3.png'
         ]),
         
         ];

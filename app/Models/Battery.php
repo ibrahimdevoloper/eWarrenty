@@ -31,6 +31,18 @@ class Battery extends Model
         'serial_number_image',// where to find serial number
     ];
 
+    public function setTerminalAttribute($value)
+    {
+        $this->attributes['terminal'] = Terminal::findOrFail($value)->name;
+        unset($this->attributes['terminal_id']);
+    }
+    public function setManufacturingCountryAttribute($value)
+    {
+        $this->attributes['manufacturing_country_ar'] = ManufacturingCountry::findOrFail($value)->name_ar;
+        $this->attributes['manufacturing_country_en'] = ManufacturingCountry::findOrFail($value)->name_en;
+        unset($this->attributes['manufacturing_country_id']);
+    }
+
     public function  manufacturingCountry(){
         return $this->belongsTo(ManufacturingCountry::class);
     }
