@@ -9,6 +9,8 @@ use App\Models\CarType;
 use App\Models\CarProperty;
 use App\Models\User;
 use App\Models\Battery;
+use App\Models\Market;
+use Illuminate\Support\Facades\Storage;
 
 class Warranty extends Model
 {
@@ -33,7 +35,37 @@ class Warranty extends Model
         "notes",
         'market_id',
     ];
+    
 
+    public function setCarTypeAttribute($value){
+        $this->attributes['car_type'] = CarType::findOrFail($value);
+        unset($this->attributes['car_type_id']);
+    }
+
+    public function setCarPropertyAttribute($value){
+        $this->attributes['car_property'] = CarProperty::findOrFail($value);
+        unset($this->attributes['car_property_id']);
+    }
+
+    public function setBatteryAttribute($value){
+        
+        $battery=Battery::findOrFail($value);
+        $battery->image=Storage::disk('public')->url($battery->image);
+        $battery->front_image=Storage::disk('public')->url($battery->front_image);
+        $battery->serial_number_image=Storage::disk('public')->url($battery->serial_number_image);
+        // $this->attributes['battery'] = Battery::findOrFail($value);
+        $this->attributes['battery'] = $battery;
+
+
+        unset($this->attributes['battery_model_id']);
+    }
+
+    public function setMarketAttribute($value){
+        $this->attributes['market'] = Market::findOrFail($value);
+        unset($this->attributes['market_id']);
+    }
+
+    
 
     public function  carType(){
         return $this->belongsTo(CarType::class);
@@ -43,12 +75,12 @@ class Warranty extends Model
         return $this->belongsTo(CarProperty::class);
     }
 
-    public function  user(){
-        return $this->belongsTo(User::class);
-    }
-
     public function  battery(){
         return $this->belongsTo(Battery::class);
+    }
+
+    public function  market(){
+        return $this->belongsTo(Market::class);
     }
 
 }

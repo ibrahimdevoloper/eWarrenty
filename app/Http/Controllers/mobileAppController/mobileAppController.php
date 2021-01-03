@@ -37,7 +37,6 @@ class mobileAppController extends Controller
                 $batteries[]=$battrey;
                 $battrey->image=Storage::disk('public')->url($battrey->image);
                 $battrey->front_image=Storage::disk('public')->url($battrey->front_image);
-                // $battrey->terminal=Terminal::findOrFail($battrey->terminal_id)->name;
                 $battrey->serial_number_image=Storage::disk('public')->url($battrey->serial_number_image);
                 // $batteries[]=$battrey;
                 // array(
@@ -88,13 +87,36 @@ class mobileAppController extends Controller
         if ($validator->fails()) {
             return response()->json([
                 'messageEn'=>'code not found',
-                'messageAr'=>'كود غير موجودة'
+                'messageAr'=>'كود غير موجود'
             ],400);
         }
         $code = $request->input('code');
-        $warrenty = Warranty::where('warranty_code', $code)->get();
+        $tempWarrenty = Warranty::where('warranty_code', $code)->first();
+        if(empty($tempWarrenty))
+            return response()->json([
+                'messageEn'=>'No Data',
+                'messageAr'=>'لا يوجد كفالات بهذا الكود'
+            ],404);
+        // $warrenties=[];
+        // foreach($tempWarrenties as $warrenty){
+            $tempWarrenty->battery=$tempWarrenty->battery_model_id;
+            $tempWarrenty->car_type=$tempWarrenty->car_type_id;
+            $tempWarrenty->market=$tempWarrenty->market_id;
+            $tempWarrenty->car_property=$tempWarrenty->car_property_id;            
+            $tempWarrenty->car_number_image=Storage::disk('public')->url($tempWarrenty->car_number_image);
+            $tempWarrenty->battery_front_image=Storage::disk('public')->url($tempWarrenty->battery_front_image);
+            $tempWarrenty->fixed_battery_image=Storage::disk('public')->url($tempWarrenty->fixed_battery_image);
+            // $warrenties[]=$warrenty;
+            // $batteries[]=$battrey;
+            // array(
+            //     $battrey->all(),
+            //     'image_path'=>Storage::disk('public')->url($battrey->image),
+            //     'front_image_path'=>Storage::disk('public')->url($battrey->front_image),
+            //     'serial_number_image_path'=>Storage::disk('public')->url($battrey->serial_number_image),
+            // );
+        // }
         return response()->json([
-            "data"=>$warrenty
+            "data"=>$tempWarrenty
         ],200);
     }
 }

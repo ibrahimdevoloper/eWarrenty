@@ -27,6 +27,6 @@ use App\Http\Controllers\mobileAppController\mobileAppController;
 // Route::resource('ManufacturingCountry','App\Http\Controllers\ManufacturingCountry\ManufacturingCountryController',['only'=>['show','index']]);
 // Route::resource('Market','App\Http\Controllers\Market\MarketController',['only'=>['show','index']]);
 // Route::resource('Terminal','App\Http\Controllers\Terminal\TerminalController',['only'=>['show','index']]);
-// Route::resource('Warranty','App\Http\Controllers\Warranty\WarrantyController',['only'=>['show','index','store']]);
+Route::resource('Warranty','App\Http\Controllers\Warranty\WarrantyController',['only'=>['store']]);
 Route::get('/initData',App\Http\Controllers\mobileAppController\mobileAppController::class.'@initData');
 Route::get('/getWarrenty',App\Http\Controllers\mobileAppController\mobileAppController::class.'@getWarrenty');

@@ -39,7 +39,7 @@ class WarrantyFactory extends Factory
                 'images/batteries/2.png',
                 'images/batteries/3.png'
             ]),
-            'fixed_battery_image'=>'images\fixedCarBattery\1.jpg',
+            'fixed_battery_image'=>'images/fixedCarBattery/1.jpg',
             'battery_model_id'=>Battery::all()->random()->id,
             'car_property_id'=>CarProperty::all()->random()->id,
             'car_type_id'=>CarType::all()->random()->id,
