@@ -36,7 +36,25 @@ class WarrantyController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $validator = Validator::make($request->all(), [
+            // 'code' => 'required'
+            'car_number_image' => 'required',
+            'battery_front_image' => 'required',
+            'fixed_battery_image' => 'required',
+            'battery_model_id'=> 'required',
+            'car_property_id'=> 'required',
+            'car_type_id'=> 'required',
+            "customer_phone_number",
+            "customer_country"=> 'required',
+            "customer_address"=> 'required',
+            "customer_email"=> 'required',
+            "customer_name"=> 'required',
+            "notes",
+            'market_id'=> 'required',
+            'battery_serial_number'=> 'required',
+            'bought_date'=> 'required',
+            'car_number'=> 'required',
+        ]);
     }
 
     /**

@@ -10,26 +10,16 @@ use App\Models\CarType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use App\Models\Market;
 
 class mobileAppController extends Controller
 {
     public function initData(Request $request){
 
-        // $validator = Validator::make($request->all(), [
-        //     'lang' => 'required'
-        // ]); 
-        // if ($validator->fails()) {
-        //     return response()->json([
-        //         'messageEn'=>'language not found',
-        //         'messageAr'=>'اللغة غير موجودة'
-        //     ],400);
-        // }
-        // $lang= $request->input('lang');
-        // if($lang=='ar')
-        // {
             $tempBatteries = Battery::all();
             $carProperties = CarProperty::all();
             $carTypes = CarType::all();
+            $markets = Market::all();
             $batteries=[];
             foreach($tempBatteries as $battrey){
                 $battrey->terminal=$battrey->terminal_id;
@@ -50,31 +40,8 @@ class mobileAppController extends Controller
                 "batteries"=>$batteries,
                 "carProperties"=>$carProperties,
                 "carTypes"=>$carTypes,
+                "markets"=>$markets,
             ],200);
-        // }else{
-        //     $tempBatteries = Battery::all();
-        //     $carProperties = CarProperty::all();
-        //     $carTypes = CarType::all();
-        //     $batteries=[];
-        //     foreach($tempBatteries as $battrey){
-        //         $battrey->image=Storage::disk('public')->url($battrey->image);
-        //         $battrey->front_image=Storage::disk('public')->url($battrey->front_image);
-        //         $battrey->terminal_id=Terminal::findOrFail($battrey->terminal_id)->name;
-        //         $battrey->serial_number_image=Storage::disk('public')->url($battrey->serial_number_image);
-        //         $batteries[]=$battrey;
-        //         // array(
-        //         //     $battrey->all(),
-        //         //     'image_path'=>Storage::disk('public')->url($battrey->image),
-        //         //     'front_image_path'=>Storage::disk('public')->url($battrey->front_image),
-        //         //     'serial_number_image_path'=>Storage::disk('public')->url($battrey->serial_number_image),
-        //         // );
-        //     }
-        //     return response()->json([
-        //         "batteries"=>$batteries,
-        //         "carProperties"=>$carProperties,
-        //         "carTypes"=>$carTypes,
-        //     ],200);
-        // }
 
     }
 
@@ -82,7 +49,7 @@ class mobileAppController extends Controller
         
 
         $validator = Validator::make($request->all(), [
-            'code' => 'required'
+            'code' => 'required|exists:warranties,warranty_code'
         ]); 
         if ($validator->fails()) {
             return response()->json([
@@ -106,14 +73,6 @@ class mobileAppController extends Controller
             $tempWarrenty->car_number_image=Storage::disk('public')->url($tempWarrenty->car_number_image);
             $tempWarrenty->battery_front_image=Storage::disk('public')->url($tempWarrenty->battery_front_image);
             $tempWarrenty->fixed_battery_image=Storage::disk('public')->url($tempWarrenty->fixed_battery_image);
-            // $warrenties[]=$warrenty;
-            // $batteries[]=$battrey;
-            // array(
-            //     $battrey->all(),
-            //     'image_path'=>Storage::disk('public')->url($battrey->image),
-            //     'front_image_path'=>Storage::disk('public')->url($battrey->front_image),
-            //     'serial_number_image_path'=>Storage::disk('public')->url($battrey->serial_number_image),
-            // );
         // }
         return response()->json([
             "data"=>$tempWarrenty
