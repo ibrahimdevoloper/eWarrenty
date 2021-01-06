@@ -15,6 +15,7 @@ use App\Models\Religion;
 use App\Models\Role;
 use App\Models\Terminal;
 use App\Models\Warranty;
+use App\Models\WarrantyDuration;
 
 class DatabaseSeeder extends Seeder
 {
@@ -32,7 +33,7 @@ class DatabaseSeeder extends Seeder
 
         CarProperty::truncate();
         CarType::truncate();
-        // Country::truncate();
+        WarrantyDuration::truncate();
         ManufacturingCountry::truncate();
         Terminal::truncate();
         Battery::truncate();
@@ -47,8 +48,8 @@ class DatabaseSeeder extends Seeder
         $manufacturingCountryQuantty=3;
         $terminalQuantty=5;
         $batteryQuantty=10;
-        $marketQuantty=250;
-        $warrantyQuantty=10000;
+        $marketQuantty=20;
+        $warrantyQuantty=100;
 
 
         // for laravel 5.*
@@ -68,7 +69,7 @@ class DatabaseSeeder extends Seeder
         Battery::factory()->count($batteryQuantty)->create();
         Market::factory()->count($marketQuantty)->create();
         Warranty::factory()->count($warrantyQuantty)->create();
-        
+        WarrantyDuration::factory()->count($carPropertyQuantty*$batteryQuantty)->create();
 
 
     }

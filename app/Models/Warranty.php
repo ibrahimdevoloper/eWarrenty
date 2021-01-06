@@ -17,23 +17,23 @@ class Warranty extends Model
     use HasFactory;
 
     protected $fillable = [
-        'battery_serial_number',
-        'bought_date',
-        'car_number',
-        'car_number_image',
-        'battery_front_image',
+        'battery_serial_number',//
+        'bought_date',//
+        'car_number',//
+        'car_number_image',//
+        'battery_front_image',//
         'fixed_battery_image',
-        'battery_model_id',
-        'car_property_id',
-        'car_type_id',
-        "warranty_code",
-        "customer_phone_number",
-        "customer_country",
-        "customer_address",
-        "customer_email",
-        "customer_name",
-        "notes",
-        'market_id',
+        'battery_model_id',//
+        'car_property_id',//
+        'car_type_id',//
+        "warranty_code",//
+        "customer_phone_number",//
+        "customer_country",//
+        "customer_address",//
+        "customer_email",//
+        "customer_name",//
+        "notes",//
+        'market_id',//
     ];
     
 
