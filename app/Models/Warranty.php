@@ -7,13 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 
 use App\Models\CarType;
 use App\Models\CarProperty;
-use App\Models\User;
+use App\Models\WarrantyDuration;
 use App\Models\Battery;
 use App\Models\Market;
 use Illuminate\Support\Facades\Storage;
 
 class Warranty extends Model
 {
+
+    private $storageLink="/storage/";
+
     use HasFactory;
 
     protected $fillable = [
@@ -50,9 +53,13 @@ class Warranty extends Model
     public function setBatteryAttribute($value){
         
         $battery=Battery::findOrFail($value);
-        $battery->image=Storage::disk('public')->url($battery->image);
-        $battery->front_image=Storage::disk('public')->url($battery->front_image);
-        $battery->serial_number_image=Storage::disk('public')->url($battery->serial_number_image);
+        // $battery->image=Storage::disk('public')->url($battery->image);
+        // $battery->front_image=Storage::disk('public')->url($battery->front_image);
+        // $battery->serial_number_image=Storage::disk('public')->url($battery->serial_number_image);
+
+        $battery->image=$this->storageLink.$battery->image;
+        $battery->front_image=$this->storageLink.$battery->front_image;
+        $battery->serial_number_image=$this->storageLink.$battery->serial_number_image;
         // $this->attributes['battery'] = Battery::findOrFail($value);
         $this->attributes['battery'] = $battery;
 
@@ -63,6 +70,15 @@ class Warranty extends Model
     public function setMarketAttribute($value){
         $this->attributes['market'] = Market::findOrFail($value);
         unset($this->attributes['market_id']);
+    }
+
+    public function setWarrantyDurationAttribute($value){
+        $this->attributes['warranty_duration'] = WarrantyDuration::findOrFail($value)->duration;
+        // unset($this->attributes['market_id']);
+        // unset($this->attributes['car_property_id']);
+        // unset($this->attributes['battery_model_id']);
+
+
     }
 
     

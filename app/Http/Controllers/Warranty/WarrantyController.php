@@ -5,12 +5,15 @@ namespace App\Http\Controllers\Warranty;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Warranty;
+use App\Models\WarrantyDuration;
 use Illuminate\Support\Facades\Storage;
 
 use Illuminate\Support\Facades\Validator;
 
 class WarrantyController extends Controller
 {
+
+
     /**
      * Display a listing of the resource.
      *
@@ -48,6 +51,9 @@ class WarrantyController extends Controller
     }
 
 
+
+
+    private $storageLink="/storage/";
     /**
      * Store a newly created resource in storage.
      *
@@ -126,10 +132,23 @@ class WarrantyController extends Controller
             
             // $warrenty = Warranty::create($newWarranty);
             $warrenty = Warranty::where('warranty_code',$newWarrantyCode)->first();
+            $warrantyDuration = WarrantyDuration::where('battery_id',$warrenty->battery_model_id)->where('car_property_id',$warrenty->car_property_id)->first();
+            // echo $warrantyDuration->id;
+            $warrenty->warranty_duration=$warrantyDuration->id;
 
-            $warrenty->car_number_image=Storage::disk('public')->url($warrenty->car_number_image);
-            $warrenty->battery_front_image=Storage::disk('public')->url($warrenty->battery_front_image);
-            $warrenty->fixed_battery_image=Storage::disk('public')->url($warrenty->fixed_battery_image);
+            $warrenty->battery=$warrenty->battery_model_id;
+            $warrenty->car_type=$warrenty->car_type_id;
+            $warrenty->market=$warrenty->market_id;
+            $warrenty->car_property=$warrenty->car_property_id;            
+
+            // $warrenty->car_number_image=Storage::disk('public')->url($warrenty->car_number_image);
+            // $warrenty->battery_front_image=Storage::disk('public')->url($warrenty->battery_front_image);
+            // $warrenty->fixed_battery_image=Storage::disk('public')->url($warrenty->fixed_battery_image);
+
+            $warrenty->car_number_image=$this->storageLink.$warrenty->car_number_image;
+            $warrenty->battery_front_image=$this->storageLink.$warrenty->battery_front_image;
+            $warrenty->fixed_battery_image=$this->storageLink.$warrenty->fixed_battery_image;
+
             // if(empty($request->input('notes')))
             //     echo "'(notes');";
 
