@@ -18,12 +18,14 @@ class Battery extends Model
 
     protected $fillable =[
         'number',
-        'info',
+        'info_en',
+        'info_ar',
         'capacity',
         'cca_ampere',
         'weight',
         'terminal_id',
-        'dimensions',
+        'dimensions_ar',
+        'dimensions_en',
         'description',
         'manufacturing_country_id',
         'image',//battery preview image

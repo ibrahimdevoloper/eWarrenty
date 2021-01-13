@@ -19,8 +19,9 @@ class Market extends Migration
             $table->string('name_ar',30);
             $table->string('email',50)->nullable();
             $table->string('phone_number',50)->nullable();
-            $table->string('country',200);
-            $table->string('address',191);
+            $table->string('country',191);
+            $table->string('address_en',191);
+            $table->string('address_ar',191);
             $table->string('username',30)->nullable();
             $table->string('password')->nullable();
             

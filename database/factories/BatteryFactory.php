@@ -25,13 +25,15 @@ class BatteryFactory extends Factory
     {
         return [
         'number'=>substr(str_shuffle('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'),1,5),
-        'info'=>$this->faker->paragraph(1),
+        'info_ar'=>$this->faker->paragraph(1),
+        'info_en'=>$this->faker->paragraph(1),
         'capacity'=> random_int(30,110),
         'cca_ampere'=>random_int(250,1100),
         'weight'=>random_int(200,450)/10,
         'terminal_id'=>Terminal::all()->random()->id,
         'dimensions'=>substr(str_shuffle('0123456789***'),1,5),
-        'description'=>$this->faker->paragraph(1),
+        'description_en'=>$this->faker->paragraph(1),
+        'description_ar'=>$this->faker->paragraph(1),
         'manufacturing_country_id'=>ManufacturingCountry::all()->random()->id,
         'image'=>$this->faker->randomElement([
             'images/batteries/1.png',

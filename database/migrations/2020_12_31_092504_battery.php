@@ -19,9 +19,11 @@ class Battery extends Migration
             $table->integer('cca_ampere');
             $table->decimal('weight',6,3);
             $table->string('number',20);
-            $table->string('info',190)->Nullable();
+            $table->string('info_en',190)->Nullable();
+            $table->string('info_ar',190)->Nullable();
             $table->string('dimensions',100);
-            $table->string('description',190)->Nullable();
+            $table->string('description_ar',190)->Nullable();
+            $table->string('description_en',190)->Nullable();
             $table->string('image');
             $table->string('front_image');
             $table->string('serial_number_image');

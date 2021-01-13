@@ -14,7 +14,8 @@ class Market extends Model
         'name_en',
         'email',
         'country',
-        'address',
+        'address_ar',
+        'address_en',
         'phone_number',
         'username',
         
