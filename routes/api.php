@@ -30,3 +30,4 @@ use App\Http\Controllers\mobileAppController\mobileAppController;
 Route::resource('Warranty','App\Http\Controllers\Warranty\WarrantyController',['only'=>['store']]);
 Route::get('/initData',App\Http\Controllers\mobileAppController\mobileAppController::class.'@initData');
 Route::get('/getWarrenty',App\Http\Controllers\mobileAppController\mobileAppController::class.'@getWarrenty');
+Route::get('/getForgottenWarrenty',App\Http\Controllers\mobileAppController\mobileAppController::class.'@getForgottenWarrentyfromEmailOrPhoneNumber');

@@ -61,6 +61,7 @@ class WarrantyController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request){
+    
         $validator = Validator::make($request->all(), [
             // 'code' => 'required'
             'car_number_image' => 'required|image:jpeg,png,jpg,gif,svg',
@@ -134,6 +135,13 @@ class WarrantyController extends Controller
             $warrenty = Warranty::where('warranty_code',$newWarrantyCode)->first();
             $warrantyDuration = WarrantyDuration::where('battery_id',$warrenty->battery_model_id)->where('car_property_id',$warrenty->car_property_id)->first();
             // echo $warrantyDuration->id;
+            // $warrantyDuration = null;
+            if($warrantyDuration==null){
+                return response()->json([
+                    'messageEn'=>'internal error please try again',
+                    'messageAr'=>'خطأ داخلي رجاء أعد المحاولة مرة أخرى'
+                ],502);
+            }
             $warrenty->warranty_duration=$warrantyDuration->id;
 
             $warrenty->battery=$warrenty->battery_model_id;

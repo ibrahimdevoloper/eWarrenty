@@ -24,6 +24,7 @@ class WarrantyDurationFactory extends Factory
      */
     public function definition()
     {
+        
         return [
             'battery_id'=>Battery::all()->random()->id,
             'car_property_id'=>CarProperty::all()->random()->id,

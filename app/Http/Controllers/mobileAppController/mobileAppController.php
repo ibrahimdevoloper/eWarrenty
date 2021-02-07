@@ -86,4 +86,90 @@ class mobileAppController extends Controller
             "data"=>$tempWarrenty
         ],200);
     }
+
+    public function getForgottenWarrentyfromEmailOrPhoneNumber(Request $request){
+        
+
+        // $validator = Validator::make($request->all(), [
+        //     'email' => 'required|exists:warranties,warranty_code',
+        //     'phone_number' => 'required|exists:warranties,warranty_code'
+        // ]); 
+        // if ($validator->fails()) {
+        //     return response()->json([
+        //         'messageEn'=>'code not found',
+        //         'messageAr'=>'كود غير موجود'
+        //     ],400);
+        // }
+        $email = $request->input('email');
+        $phoneNumber = $request->input('phone_number');
+
+        if($email==null&&$phoneNumber==null){
+            return response()->json([
+                'messageEn'=>'Please Put Your E-mail or Phone Number to Restore Warranty',
+                'messageAr'=>' لا تنسى وضع بريدك الالكتروني أو رقم هاتفك لاستعادة كفالتك'
+            ],404);
+        }
+
+        if($email!=null){
+            // return response()->json([
+            //     'messageEn'=>'Please Put Your E-mail or Phone Number to Restore Warranty',
+            //     'messageAr'=>' لا تنسى وضع بريدك الالكتروني أو رقم هاتفك لاستعادة كفالتك'
+            // ],404);
+
+            $tempWarrenties = Warranty::where('customer_email', $email)->get();
+            if(empty($tempWarrenties))
+                return response()->json([
+                 'messageEn'=>'No Data Linked with this E-mail',
+                    'messageAr'=>'لا يوجد كفالات مرتبطة مع هذا الإيميل'
+             ],404);
+        $warrenties=[];
+        foreach($tempWarrenties as $tempWarrenty){
+            $warrantyDuration = WarrantyDuration::where('battery_id',$tempWarrenty->battery_model_id)->where('car_property_id',$tempWarrenty->car_property_id)->first();
+            // var_dump( $tempWarrenty);
+            $tempWarrenty->warranty_duration=$warrantyDuration->id;
+            $tempWarrenty->battery=$tempWarrenty->battery_model_id;
+            $tempWarrenty->car_type=$tempWarrenty->car_type_id;
+            $tempWarrenty->market=$tempWarrenty->market_id;
+            $tempWarrenty->car_property=$tempWarrenty->car_property_id;            
+            $tempWarrenty->car_number_image=$this->storageLink.$tempWarrenty->car_number_image;
+            $tempWarrenty->battery_front_image=$this->storageLink.$tempWarrenty->battery_front_image;
+            $tempWarrenty->fixed_battery_image=$this->storageLink.$tempWarrenty->fixed_battery_image;
+            $warrenties[]=$tempWarrenty;
+        }
+        return response()->json([
+            "data"=>$warrenties
+        ],200);
+        }
+
+
+        if($phoneNumber!=null){
+            $tempWarrenties = Warranty::where('customer_phone_number', $phoneNumber)->get();
+            if(empty($tempWarrenties))
+                return response()->json([
+                 'messageEn'=>'No Data Linked with this E-mail',
+                    'messageAr'=>'لا يوجد كفالات مرتبطة مع هذا الرقم'
+             ],404);
+        $warrenties=[];
+        foreach($tempWarrenties as $tempWarrenty){
+            $warrantyDuration = WarrantyDuration::where('battery_id',$tempWarrenty->battery_model_id)->where('car_property_id',$tempWarrenty->car_property_id)->first();
+            // var_dump( $tempWarrenty);
+            $tempWarrenty->warranty_duration=$warrantyDuration->id;
+            $tempWarrenty->battery=$tempWarrenty->battery_model_id;
+            $tempWarrenty->car_type=$tempWarrenty->car_type_id;
+            $tempWarrenty->market=$tempWarrenty->market_id;
+            $tempWarrenty->car_property=$tempWarrenty->car_property_id;            
+            $tempWarrenty->car_number_image=$this->storageLink.$tempWarrenty->car_number_image;
+            $tempWarrenty->battery_front_image=$this->storageLink.$tempWarrenty->battery_front_image;
+            $tempWarrenty->fixed_battery_image=$this->storageLink.$tempWarrenty->fixed_battery_image;
+            $warrenties[]=$tempWarrenty;
+        }
+        return response()->json([
+            "data"=>$warrenties
+        ],200);
+        
+        }
+
+
+        
+    }
 }
